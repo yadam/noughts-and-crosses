@@ -56,6 +56,10 @@ This project is composed of several components to display the game on the screen
   - setupTests.js
     - A jest setup file
 
+## Lighthouse report
+
+![Lighthouse report](./lighthouse.png)
+
 ## Installation and Running
 
 ### Install Dependencies
