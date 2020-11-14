@@ -1,6 +1,6 @@
 import { getMove } from './ai';
 import { _, o, x } from './constants';
-import { hasWinner, noMovesLeft } from './endgame';
+import { getWinningIndicies, noMovesLeft } from './endgame';
 
 /*
 board indices:
@@ -64,7 +64,7 @@ describe('ai', () => {
       let board = initial;
       let move = 0;
 
-      while (!hasWinner(board) && !noMovesLeft(board)) {
+      while (!getWinningIndicies(board) && !noMovesLeft(board)) {
         const isEven = !!(move % 2);
         const marker = isEven ? o : x;
         const maxDepth = isEven ? Infinity : beatableDepth;
@@ -72,7 +72,7 @@ describe('ai', () => {
         move += 1;
       }
 
-      const winner = hasWinner(board);
+      const winner = getWinningIndicies(board);
       const hasNoMoves = noMovesLeft(board);
 
       expect(winner === undefined || board[winner[0]] === o).toBeTruthy();
@@ -87,7 +87,7 @@ describe('ai', () => {
       let board = initial;
       let move = 0;
 
-      while (!hasWinner(board) && !noMovesLeft(board)) {
+      while (!getWinningIndicies(board) && !noMovesLeft(board)) {
         const isEven = !!(move % 2);
         const marker = isEven ? o : x;
         const maxDepth = isEven ? beatableDepth : Infinity;
@@ -95,7 +95,7 @@ describe('ai', () => {
         move += 1;
       }
 
-      const winner = hasWinner(board);
+      const winner = getWinningIndicies(board);
       const hasNoMoves = noMovesLeft(board);
 
       expect(winner === undefined || board[winner[0]] === x).toBeTruthy();
@@ -110,7 +110,7 @@ describe('ai', () => {
       let board = initial;
       let move = 0;
 
-      while (!hasWinner(board) && !noMovesLeft(board)) {
+      while (!getWinningIndicies(board) && !noMovesLeft(board)) {
         const isEven = !!(move % 2);
         const marker = isEven ? o : x;
         if (!isEven) {
@@ -125,7 +125,7 @@ describe('ai', () => {
         move += 1;
       }
 
-      const winner = hasWinner(board);
+      const winner = getWinningIndicies(board);
       const hasNoMoves = noMovesLeft(board);
 
       expect(winner === undefined || board[winner[0]] === o).toBeTruthy();
