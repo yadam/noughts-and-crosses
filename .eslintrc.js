@@ -20,5 +20,6 @@ module.exports = {
     'react/jsx-indent-props': 'off',
     'react/jsx-one-expression-per-line': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'react/react-in-jsx-scope': 'off',
   },
 };

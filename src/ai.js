@@ -1,5 +1,5 @@
 import { o, x } from './constants';
-import { hasWinner, noMovesLeft } from './endgame';
+import { getWinningIndicies, noMovesLeft } from './endgame';
 
 /*
 board indices:
@@ -20,7 +20,7 @@ let maxDepth;
  * @returns {number}    The score
  */
 const getScore = (board) => {
-  const winner = hasWinner(board);
+  const winner = getWinningIndicies(board);
   if (!winner) {
     return 0;
   }

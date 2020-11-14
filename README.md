@@ -1,70 +1,77 @@
-# Getting Started with Create React App
+# Noughts and Crosses
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+A single player tic-tac-toe game built in React. This game offers two difficulty levels (beatable and unbeatable).
 
-In the project directory, you can run:
+## Trade offs and potential next steps
 
-### `yarn start`
+- Integration tests - I would add additional integration level tests to further test the available user interactions.
+- Additional difficulty levels - It could be interesting to implement a novice difficulty level that makes completely uneducated/random moves.
+- Alpha-beta pruning - This could speed up the time it takes to determine the computer's move by pruning parts of the game tree.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Architecture
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+This project is composed of several components to display the game on the screen. It utilizes React hooks and context for state management.
 
-### `yarn test`
+- src - This directory contains the majority of the project code
+  - components - The components that make up the UI of the application
+    - Board.js
+      - The main board component. This displays the grid of cells and also handles the win/loss/tie notifications and a click handler for the cells.
+    - Cell.js
+      - A single cell component that makes up the board. This component handles the display of the markers and win/loss conditions.
+    - Controls.js
+      - A composed component to handle displaying the game settings controls in a responsive way.
+    - Difficulty.js
+      - The difficulty mode selector switch.
+    - Header.js
+      - A simple header component for the page.
+    - MoveFirst.js
+      - A set of radio buttons that allows the user to select between the player or the computer moving first.
+    - Restart.js
+      - A button to restart the game or to enable the user to play again after the game has ended.
+  - context - The contexts that handle the application state.
+    - settings.js
+      - A context that stores the settings for the application such as the difficulty level and which player will move first.
+    - status.js
+      - A context that stores the status of the current game and allows for updates to the game board.
+  - ai.js
+    - The AI service that is used to determine the next move the computer should make. This utilizes the minimax algorithm for this determination.
+  - ai.test.js
+    - Unit tests for the AI service.
+  - App.css
+    - Global CSS to be applied to the entire application.
+  - App.js
+    - The root component of the application.
+  - App.test.js
+    - Unit tests for UI of the application.
+  - constants.js
+    - Some helpers to keep values consistent between files
+  - endgame.js
+    - A service to validate the end game scenarios for the game. Determining win/loss/tie situations.
+  - endgame.test.js
+    - Unit tests for the end game service.
+  - reportWebVitals.js
+    - A create-react-app boilerplate file
+  - setupTests.js
+    - A jest setup file
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation and Running
 
-### `yarn build`
+### Install Dependencies
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+$ yarn install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Start Developer Mode
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+$ yarn start
+```
 
-### `yarn eject`
+### Run Unit Tests
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+$ yarn test
+```
